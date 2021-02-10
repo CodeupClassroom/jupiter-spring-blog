@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Navbar</title>
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar navbar-light bg-light">
+	<ul>
+		<li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+		<li class="nav-item"><a class="nav-link" th:href="@{/posts}">Posts</a></li>
+		<li class="nav-item"><a class="nav-link" th:href="@{/roll-dice}">Roll Dice</a></li>
+	</ul>
+</nav>
+</body>
+</html>
