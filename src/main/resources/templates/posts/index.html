@@ -7,6 +7,11 @@
 	<!-- This is where we iterate through the Posts ArrayList -->
 	<h1>Here are all the posts!</h1>
 
+	<div th:each="post : ${posts}">
+		<h1 th:text="${post.title}"></h1>
+		<p th:text="${post.body}"></p>
+	</div>
+
 
 	<div th:replace="partials/scripts :: assets"></div>
 </body>
