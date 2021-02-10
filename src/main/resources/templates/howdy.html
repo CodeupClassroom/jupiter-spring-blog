@@ -9,12 +9,14 @@
 </head>
 <body>
 
+<nav th:replace="partials/partials :: navbar"></nav>
+
 
 <h1>This is the home page view</h1>
 
-<h1>Hello,
-	<span th:text="${name}"></span>!
-</h1>
+<!--<h1>Hello,-->
+<!--	<span th:text="${name}"></span>!-->
+<!--</h1>-->
 
 
 
@@ -26,6 +28,8 @@
 <!--</h1>-->
 
 
+
+
 <!-- if and each tags  && looping-->
 
 <!--<div th:if="${willSayHi}">-->
@@ -33,6 +37,7 @@
 <!--		<p>Hi, <span th:text="${name}"></span>!</p>-->
 <!--	</div>-->
 <!--</div>-->
+
 <!--<div th:unless="${willSayHi}">-->
 <!--	<div th:each="name : ${names}">-->
 <!--		<p>Bye, <span th:text="${name}"></span>. :(</p>-->
@@ -40,5 +45,6 @@
 <!--</div>-->
 
 
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>

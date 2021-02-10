@@ -16,7 +16,7 @@ public class HowdyController {
 
 	@GetMapping("/hi")
 	public String helloView(){
-		//This will return a file named howdy-final.html that is inside of resources/templates
+		//This will return a file named howdy.html that is inside of resources/templates
 		return "howdy";
 	}
 
