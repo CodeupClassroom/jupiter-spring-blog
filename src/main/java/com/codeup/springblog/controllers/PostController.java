@@ -1,6 +1,7 @@
 package com.codeup.springblog.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,15 +10,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PostController {
 
     @GetMapping("/posts")
-    @ResponseBody
-    public String postsIndex(){
-        return "Viewing all posts...";
+    public String postsIndex(Model model){
+
+        model.addAttribute("title", "All Posts");
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String postView(){
-        return "Viewing individual post...";
+    public String postView(Model model){
+//        get single post by id later
+        model.addAttribute("title", "Single Posts");
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
