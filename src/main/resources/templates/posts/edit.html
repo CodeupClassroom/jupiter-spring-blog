@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thymeleaf Page</title>
+</head>
+<body>
+
+<h1>Edit Post</h1>
+<form th:action="@{|/posts/${post.id}/edit|}" th:method="POST">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" th:value="${post.title}" th:placeholder="#{post.title}">
+
+    <label for="body">Body</label>
+    <textarea name="body" id="body" cols="30" rows="10" th:text="${post.body}" th:placeholder="#{post.body}"></textarea>
+
+    <button type="submit">Update Post</button>
+</form>
+
+<form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
+    <button>Delete Post</button>
+</form>
+
+</body>
+</html>

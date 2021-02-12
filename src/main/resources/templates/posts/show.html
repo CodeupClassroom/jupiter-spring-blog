@@ -5,9 +5,10 @@
 	<nav th:replace="partials/navbar :: navbar"></nav>
 
 	<h1>Here is a single post !</h1>
-	<h2 th:text="${post.title}"></h2>
-	<h2 th:text="${post.body}"></h2>
+	<h3 th:text="${post.title}"></h3>
+	<p th:text="${post.body}"></p>
 
 	<div th:replace="partials/scripts :: assets"></div>
+	<a th:href="@{|/posts/${post.id}/edit|}">Edit Post</a>
 </body>
 </html>

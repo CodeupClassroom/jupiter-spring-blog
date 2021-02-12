@@ -8,7 +8,7 @@
 	<h1>Here are all the posts!</h1>
 
 	<div th:each="post : ${posts}">
-		<h1 th:text="${post.title}"></h1>
+		<a th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></a>
 		<p th:text="${post.body}"></p>
 	</div>
 
