@@ -1,21 +1,22 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
+import com.codeup.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class PostController {
 
     private final PostRepository postsDao;
+    private final UserRepository usersDao;
 
-    public PostController(PostRepository postsDao){
+    public PostController(PostRepository postsDao, UserRepository usersDao){
         this.postsDao = postsDao;
+        this.usersDao = usersDao;
     }
 
     @GetMapping("/posts")
@@ -58,14 +59,22 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String postForm(){
-        return "Create a post here!";
+    public String postForm(Model model){
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String createPost(){
-        return "Creating a new post...";
+    public String createPost(@RequestParam String title, @RequestParam String body) {
+        Post post = new Post();
+        post.setTitle(title);
+        post.setBody(body);
+
+        // Will throw if no users in the db!
+        User user = usersDao.findAll().get(0);
+        post.setUser(user);
+
+        postsDao.save(post);
+        return "redirect:/posts/" + post.getId();
     }
 }
