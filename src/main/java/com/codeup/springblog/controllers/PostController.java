@@ -41,12 +41,10 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String updatePost(@PathVariable long id, @RequestParam String title, @RequestParam String body) {
-        Post post = new Post(
-                id,
-                title,
-                body
-        );
+    public String updatePost(@PathVariable long id, @ModelAttribute Post post) {
+        //TODO: Change user to logged in user dynamic
+        User user = usersDao.findAll().get(0);
+        post.setUser(user);
         postsDao.save(post);
         return "redirect:/posts";
     }
@@ -65,16 +63,13 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam String title, @RequestParam String body) {
-        Post post = new Post();
-        post.setTitle(title);
-        post.setBody(body);
-
+    public String createPost(@ModelAttribute Post post) {
         // Will throw if no users in the db!
+        // In the future, we will get the logged in user
         User user = usersDao.findAll().get(0);
         post.setUser(user);
 
         postsDao.save(post);
-        return "redirect:/posts/" + post.getId();
+        return "redirect:/posts";
     }
 }
