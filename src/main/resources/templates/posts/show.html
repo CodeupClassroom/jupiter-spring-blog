@@ -4,11 +4,15 @@
 <body>
 	<nav th:replace="partials/navbar :: navbar"></nav>
 
-	<h1>Here is a single post !</h1>
-	<h3 th:text="${post.title}"></h3>
-	<p th:text="${post.body}"></p>
+    <div class="container">
+        <h1 class="my-4">Here is a single post !</h1>
 
-	<div th:replace="partials/scripts :: assets"></div>
-	<a th:href="@{|/posts/${post.id}/edit|}">Edit Post</a>
+        <h3 th:text="${post.title}"></h3>
+        <p th:text="'Authored by ' + ${post.user.email}" />
+        <p th:text="${post.body}"></p>
+        <div th:replace="partials/scripts :: assets"></div>
+        <a th:href="@{|/posts/${post.id}/edit|}">Edit Post</a>
+
+    </div>
 </body>
 </html>
