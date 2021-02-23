@@ -50,3 +50,32 @@ insert into posts (body, title) values ('Suspendisse potenti. Cras in purus eu m
 insert into posts (body, title) values ('Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.', 'Multi-layered');
 insert into posts (body, title) values ('Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.', 'leverage');
 insert into posts (body, title) values ('Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.', 'client-driven');
+
+
+
+
+INSERT INTO `users` (`username`, `email`, `password`)
+VALUES
+('Sally Smith', 'sally@email.com', '$2a$12$hMBHftmWPtdIWrgX1My8Wuhz9wrZULG5MrqmoVwCSBH24t/DDlPNS'),
+('Karen Schultz', 'karen@email.com', '$2a$12$hMBHftmWPtdIWrgX1My8Wuhz9wrZULG5MrqmoVwCSBH24t/DDlPNS'),
+('Fred White', 'fred@email.com', '$2a$12$hMBHftmWPtdIWrgX1My8Wuhz9wrZULG5MrqmoVwCSBH24t/DDlPNS'),
+('Bud Gibson', 'bud@email.com', '$2a$12$hMBHftmWPtdIWrgX1My8Wuhz9wrZULG5MrqmoVwCSBH24t/DDlPNS'),
+('Bobby Bob', 'bobby@email.com', '$2a$12$hMBHftmWPtdIWrgX1My8Wuhz9wrZULG5MrqmoVwCSBH24t/DDlPNS');
+
+
+INSERT INTO `ads` (`user_id`, `title`, `description`)
+VALUES (1, 'Dabbing',
+        'Dabbing, or the dab, is a simple dance move in which a person drops the head into the bent crook of a slanted arm, often while raising the opposite arm in a parallel direction but out straight. Since 2015, it has also been used as a gesture of triumph or playfulness, becoming a youthful American dance fad and Internet meme.[1] The move looks similar to someone sneezing into the \"inside\" of their elbow.. - (https://en.wikipedia.org/wiki/Dab_(dance))'),
+       (1, 'Super Soakers',
+        'Super Soaker is a brand of recreational water gun that utilizes manually-pressurized air to shoot water with greater power, range, and accuracy than conventional squirt pistols. The Super Soaker was invented in 1982 by engineer Lonnie Johnson. The prototype combined PVC pipe, acrylic glass, and an empty plastic soda bottle. - (https://en.wikipedia.org/wiki/Super_Soaker)'),
+       (1, 'Pogs',
+        'Pogs, generically called milk caps, is a game that was popular among children during the mid 1990s. - (https://en.wikipedia.org/wiki/Milk_caps_(game))'),
+       (1, 'Spinners',
+        'A fidget spinner is a toy that consists of a ball bearing in the center of a multi-lobed (typically two or three) flat structure made from metal or plastic designed to spin along its axis with little effort. Fidget spinners became popular toys in April 2017, although similar devices had been invented as early as 1993. - (https://en.wikipedia.org/wiki/Fidget_spinner)'),
+       (1, 'The Word \"Tubular\"',
+        'Surfing (particularly in Southern California) has its own sociolect, which has comingled with Valleyspeak. Words such as \"dude\", \"tubular\", \"radical\", and \"gnarly\" are associated with both and Northern California created its own unique surf terms as well that include \"groovy\", \"h
+ella\", and \"tight\". - (https://en.wikipedia.org/wiki/Surf_culture#Surf_terminology)'),
+       (1, 'Surge',
+        'Surge (sometimes styled as SURGE) is a citrus flavored soft drink first produced in the 1990s by The Coca-Cola Company to compete with Pepsi\'s Mountain Dew. - (https://en.wikipedia.org/wiki/Surge_(drink))');
+
+
