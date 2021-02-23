@@ -5,11 +5,11 @@
 	<nav th:replace="partials/navbar :: navbar"></nav>
 
 	<!-- This is where we iterate through the Posts ArrayList -->
-	<h1>Here are all the posts!</h1>
+	<h1>Here are all the ads!</h1>
 
-	<div th:each="post : ${posts}">
-		<a th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></a>
-		<p th:text="${post.body}"></p>
+	<div th:each="ad : ${ads}">
+		<h3 th:text="${ad.title}" ></h3>
+		<p th:text="${ad.description}"></p>
 	</div>
 
 

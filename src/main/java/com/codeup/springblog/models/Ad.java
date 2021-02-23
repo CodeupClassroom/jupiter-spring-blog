@@ -1,4 +1,4 @@
-package com.edevs.springadlister.models;
+package com.codeup.springblog.models;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,19 +17,10 @@ public class Ad {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="ads_categories",
-            joinColumns={@JoinColumn(name="ad_id")},
-            inverseJoinColumns={@JoinColumn(name="category_id")}
-    )
-    private List<AdCategory> categories;
-
-
-    public Ad(){}
+     public Ad(){}
 
     public Ad(long id, String title, String description) {
         this.id = id;
@@ -70,15 +61,8 @@ public class Ad {
         return description;
     }
 
-
     public void setDescription(String description) {
         this.description = description;
     }
-    public List<AdCategory> getCategories() {
-        return categories;
-    }
 
-    public void setCategories(List<AdCategory> categories) {
-        this.categories = categories;
-    }
 }
