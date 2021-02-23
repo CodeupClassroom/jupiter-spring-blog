@@ -22,6 +22,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
+    @OneToMany(mappedBy = "user")
+    private List<Ad> ads;
+
     public long getId() {
         return id;
     }

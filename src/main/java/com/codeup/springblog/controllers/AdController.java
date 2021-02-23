@@ -28,7 +28,7 @@ public class AdController {
 	}
 
 	@GetMapping("/ads/create")
-	public String postForm(Model model){
+	public String showAdForm(Model model){
 		model.addAttribute("ad", new Ad());
 		return "ads/create";
 	}
