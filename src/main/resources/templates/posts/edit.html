@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Thymeleaf Page</title>
-</head>
+<head th:replace="partials/head :: header-links"></head>
 <body>
 
-<h1>Edit Post</h1>
-<form th:action="@{|/posts/${post.id}/edit|}" th:method="POST">
-    <label for="title">Title</label>
-    <input id="title" type="text" name="title" th:value="${post.title}" th:placeholder="#{post.title}">
+<nav th:replace="partials/navbar :: navbar"></nav>
 
-    <label for="body">Body</label>
-    <textarea name="body" id="body" cols="30" rows="10" th:text="${post.body}" th:placeholder="#{post.body}"></textarea>
+<div class="container">
+    <h1 class="my-4">Create Post</h1>
 
-    <button type="submit">Update Post</button>
-</form>
+    <form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="POST" th:object="${post}">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-control" type="text" id="title" th:field="*{title}" th:value="${post.title}" th:placeholder="#{post.title}"/>
+        </div>
+        <div class="form-group">
+            <label for="body">Body</label>
+            <textarea class="form-control" id="body" th:field="*{body}" th:text="${post.body}" th:placeholder="#{post.body}"></textarea>
+        </div>
 
-<form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
-    <button>Delete Post</button>
-</form>
+        <input class="btn btn-primary" type="submit" value="Edit Post" />
+    </form>
+
+    <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
+        <input class="btn btn-danger" type="submit" value="Delete Post" />
+    </form>
+</div>
+
 
 </body>
 </html>
+
