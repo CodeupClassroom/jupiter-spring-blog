@@ -7,10 +7,12 @@
 	<!-- This is where we iterate through the Posts ArrayList -->
 	<h1>Here are all the posts!</h1>
 
-	<div th:each="post : ${posts}">
-		<a th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></a>
-		<p th:text="${post.body}"></p>
-	</div>
+    <div class="container">
+        <div th:each="post : ${posts}">
+            <a th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></a>
+            <p th:text="${post.body}"></p>
+        </div>
+    </div>
 
 
 	<div th:replace="partials/scripts :: assets"></div>
