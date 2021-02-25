@@ -3,7 +3,7 @@ package com.codeup.springblog.controllers;
 import com.codeup.springblog.models.Ad;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.AdRepository;
-import com.codeup.springblog.repositories.UserRepository;
+import com.codeup.springblog.services.EmailService;
 import com.codeup.springblog.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AdController {
 	private final AdRepository adsDao;
-	private final UserRepository usersDao;
 	private final UserService userService;
+	private final EmailService emailService;
 
-	public AdController(AdRepository adsDao, UserRepository usersDao, UserService userService) {
+	public AdController(AdRepository adsDao, UserService userService, EmailService emailService) {
 		this.adsDao = adsDao;
-		this.usersDao = usersDao;
 		this.userService = userService;
+		this.emailService = emailService;
 	}
 
 	@GetMapping("/ads")
@@ -43,6 +43,14 @@ public class AdController {
 		ad.setUser(user);
 
 		Ad savedAd = adsDao.save(ad);
+
+		//send an email when an ad is successfully saved
+		String subject = "New Ad Created!";
+		String body = "Dear " + savedAd.getUser().getUsername()
+				+ ". Thank you for creating an ad. Your ad id is "
+				+ savedAd.getId();
+
+		emailService.prepareAndSend(savedAd, subject, body);
 
 		return "redirect:/ads";
 	}
