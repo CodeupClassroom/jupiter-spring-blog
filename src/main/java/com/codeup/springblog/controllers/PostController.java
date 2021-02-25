@@ -4,6 +4,7 @@ import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
+import com.codeup.springblog.services.EmailService;
 import com.codeup.springblog.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +16,13 @@ public class PostController {
     private final PostRepository postsDao;
     private final UserRepository usersDao;
     private final UserService userService;
+    private final EmailService emailService;
 
-    public PostController(PostRepository postsDao, UserRepository usersDao, UserService userService){
+    public PostController(PostRepository postsDao, UserRepository usersDao, UserService userService, EmailService emailService){
         this.postsDao = postsDao;
         this.usersDao = usersDao;
         this.userService = userService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -72,7 +75,15 @@ public class PostController {
         User user = userService.getLoggedInUser();
         post.setUser(user);
 
-        postsDao.save(post);
+        Post savedPost = postsDao.save(post);
+
+        //send an email when an ad is successfully saved
+        String subject = "New Post Created: " + savedPost.getTitle();
+        String body = "Dear " + savedPost.getUser().getUsername()
+                + ". Thank you for creating a post. Your post id is "
+                + savedPost.getId();
+
+        emailService.prepareAndSend(savedPost, subject, body);
         return "redirect:/posts";
     }
 }
